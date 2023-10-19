@@ -26,14 +26,15 @@ cp -a $BM/labdata.csv $BM/labdata_tmp.csv
 awk '!a[$0]++' $BM/labdata_tmp.csv > $BM/labdata.csv
 rm -rf $BM/labdata_tmp.csv
 
+execTime=$( tail -1 $BM/labdata.csv | cut -d, -f6)
 requests=$( tail -1 $BM/labdata.csv | cut -d, -f1)
 misses=$( grep -c "L1: Was the request a miss?,0,1,boolean" $BM/labdata.csv)
 hits=$(expr $requests - $misses)
 
 
-echo "total number of requests is $requests"   > $BM/summary.txt
-echo "total number of hits is     $hits"      >> $BM/summary.txt
-echo "total number of misses is   $misses"    >> $BM/summary.txt
-
+echo "Execution time: $execTime"             > $BM/summary.txt
+echo "total number of requests: $requests"  >> $BM/summary.txt
+echo "total number of hits:     $hits"      >> $BM/summary.txt
+echo "total number of misses:   $misses"    >> $BM/summary.txt
 
 
