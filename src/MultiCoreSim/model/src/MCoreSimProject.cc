@@ -72,10 +72,12 @@ void MCoreSimProject::setup1(MCoreSimProjectXml projectXmlCfg)
   getcwd (path_array, sizeof(path_array));
 
   string path(path_array);
-  int app_name_index = path.rfind(APP_NAME);
+  //int app_name_index = path.rfind(APP_NAME);
   
-  m_fsm_protocol_path = path.substr(0, app_name_index + sizeof(APP_NAME) - 1) + string("/Protocols_FSM/");
-  m_fsm_llc_protocol_path = path.substr(0, app_name_index + sizeof(APP_NAME) - 1) + string("/Protocols_FSM/");
+  //m_fsm_protocol_path = path.substr(0, app_name_index + sizeof(APP_NAME) - 1) + string("/Protocols_FSM/");
+  //m_fsm_llc_protocol_path = path.substr(0, app_name_index + sizeof(APP_NAME) - 1) + string("/Protocols_FSM/");
+  m_fsm_protocol_path = path+string("/Protocols_FSM/");
+  m_fsm_llc_protocol_path = path+string("/Protocols_FSM/");
   cout <<"FSM path: " << m_fsm_protocol_path << endl;
 
   // Get Coherence protocol type
