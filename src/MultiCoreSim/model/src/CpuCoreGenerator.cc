@@ -104,7 +104,7 @@ namespace ns3 {
     }
 
     // This function does most of the functionality.
-    void CpuCoreGenerator::ProcessTxRxBuf() {
+    void CpuCoreGenerator::ProcessTxBuf() {
         std::string fline;
         uint64_t newArrivalCycle;
 
@@ -176,7 +176,9 @@ namespace ns3 {
           m_bmTrace.close();
           m_cpuReqDone = true;
         }           
+    } // void CpuCoreGenerator::ProcessTxBuf()
 
+        void CpuCoreGenerator::ProcessRxBuf() {
         // process received buffer
         if (!m_cpuFIFO->m_rxFIFO.IsEmpty()) {
           m_cpuMemResp = m_cpuFIFO->m_rxFIFO.GetFrontElement();
@@ -206,13 +208,14 @@ namespace ns3 {
           m_cpuCycle++;
         }
 
-    } // CpuCoreGenerator::ProcessTxRxBuf()
+    } // CpuCoreGenerator::ProcessRxBuf()
 
     /**
      * Runs one mobility Step for the given vehicle generator.
      * This function is called each interval dt
      */
     void CpuCoreGenerator::Step(Ptr<CpuCoreGenerator> cpuCoreGenerator) {
-        cpuCoreGenerator->ProcessTxRxBuf();
+        cpuCoreGenerator->ProcessTxBuf();
+        cpuCoreGenerator->ProcessRxBuf();
     }
 }
