@@ -80,7 +80,8 @@ namespace ns3 {
     // Called by static method to process step
     // to insert new request or remove response
     // from assoicatedBuffers.
-    void ProcessTxRxBuf();
+    void ProcessTxBuf();
+    void ProcessRxBuf();
 
   public:
     // Override TypeId.
