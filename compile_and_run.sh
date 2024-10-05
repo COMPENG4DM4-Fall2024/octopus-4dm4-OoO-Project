@@ -20,9 +20,8 @@ gcc -o $BM\_exe $2
 ./tools/x86_trace_generator/pin-3.13-98189-g60a6ef199-gcc-linux/pin -t tools/x86_trace_generator/obj-intel64/trace_generator.so  -manual 1 -thread 1  -- $BM\_exe
 mkdir $BM
 mv memtrace.out $BM/trace_C0.trc.shared
-./run.sh $1 $BM
+./waf configure
 ./run.sh $1 $BM 2>&1 >/dev/null | python3 lab_parser.py > $BM/labdata.csv
-
 cp -a $BM/labdata.csv $BM/labdata_tmp.csv
 awk '!a[$0]++' $BM/labdata_tmp.csv > $BM/labdata.csv
 rm -rf $BM/labdata_tmp.csv
@@ -32,14 +31,16 @@ requests=$( tail -1 $BM/labdata.csv | cut -d, -f1)
 misses=$( grep -c "L1: Was the request a miss?,0,1,boolean" $BM/labdata.csv)
 hits=$(expr $requests - $misses)
 
-
+echo $BM
 echo "Execution time: $execTime"             > $BM/summary.txt
 echo "total number of requests: $requests"  >> $BM/summary.txt
 echo "total number of hits:     $hits"      >> $BM/summary.txt
 echo "total number of misses:   $misses"    >> $BM/summary.txt
 
-echo "Execution time: $execTime"            
-echo "total number of requests: $requests" 
-echo "total number of hits:     $hits"     
-echo "total number of misses:   $misses" 
-echo "Simulation is successfully done"  
+
+echo "Execution time: $execTime"           
+echo "total number of requests: $requests"  
+echo "total number of hits:     $hits"      
+echo "total number of misses:   $misses"    
+
+
