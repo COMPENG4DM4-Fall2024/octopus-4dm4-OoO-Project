@@ -20,7 +20,7 @@ gcc -o $BM\_exe $2
 ./tools/x86_trace_generator/pin-3.13-98189-g60a6ef199-gcc-linux/pin -t tools/x86_trace_generator/obj-intel64/trace_generator.so  -manual 1 -thread 1  -- $BM\_exe
 mkdir $BM
 mv memtrace.out $BM/trace_C0.trc.shared
-./waf configure
+./run.sh $1 $BM
 ./run.sh $1 $BM 2>&1 >/dev/null | python3 lab_parser.py > $BM/labdata.csv
 cp -a $BM/labdata.csv $BM/labdata_tmp.csv
 awk '!a[$0]++' $BM/labdata_tmp.csv > $BM/labdata.csv
