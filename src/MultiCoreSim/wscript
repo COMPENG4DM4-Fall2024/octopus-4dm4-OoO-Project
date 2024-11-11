@@ -59,6 +59,8 @@ def build(bld):
         'model/src/CacheSim.cpp',
         'model/src/ReplacementPolicies/Random.cpp',
         'model/src/ReplacementPolicies/LeastRecentlyUsed.cpp',
+        'model/src/ROB.cc',
+        'model/src/LSQ.cc',  
         ]
     #module.includes = [module.includes, '/Users/Mhossam/Documents/PhD_Work/MCsim/MCsim/src']
     # module.libpath = '/Users/Mhossam/Documents/PhD_Work/CacheSim_Stable/cachesim'
@@ -129,7 +131,8 @@ def build(bld):
         'model/header/ReplacementPolicies/ReplacementPolicy.h',
         'model/header/ReplacementPolicies/Random.h',
         'model/header/ReplacementPolicies/LeastRecentlyUsed.h',
-        
+        'model/header/ROB.h',
+        'model/header/LSQ.h',
         # 'model/header/MCsim/MCsim.h',
         # 'model/header/MCsim/MCsimCallback.h',
         ]
