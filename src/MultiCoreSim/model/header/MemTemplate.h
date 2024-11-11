@@ -80,7 +80,8 @@ namespace ns3
     {
       READ = 0,
       WRITE = 1,
-      REPLACE = 2
+      REPLACE = 2,
+      COMPUTE = 3
     };
     // A request  contains information on
     // its own memory request, type, and cycle.
@@ -93,6 +94,7 @@ namespace ns3
       uint64_t fifoInserionCycle;
       REQTYPE type;
       uint8_t data[8];
+      uint64_t ready;
     };
 
     struct RespMsg
